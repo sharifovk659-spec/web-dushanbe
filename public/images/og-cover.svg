@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#050816"/>
+  <defs>
+    <linearGradient id="ogGrad" x1="0" y1="0" x2="1200" y2="630">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <circle cx="900" cy="200" r="200" fill="url(#ogGrad)"/>
+  <circle cx="300" cy="500" r="150" fill="url(#ogGrad)"/>
+  <text x="80" y="120" fill="white" font-family="system-ui,sans-serif" font-size="48" font-weight="700">WEB DUSHANBE</text>
+  <text x="80" y="180" fill="#94A3B8" font-family="system-ui,sans-serif" font-size="28">Создаём сайты, которые приносят клиентов</text>
+  <rect x="80" y="220" width="200" height="50" rx="12" fill="#4F46E5"/>
+  <text x="110" y="252" fill="white" font-family="system-ui,sans-serif" font-size="18">webdushanbe.tj</text>
+</svg>
