@@ -67,7 +67,7 @@ function NeonShape() {
 
 export function CTA() {
   return (
-    <section id="contacts" className="section-spacing relative overflow-hidden">
+    <section className="section-spacing relative overflow-hidden">
       <div className="section-glow" aria-hidden />
       <div className="section-container relative">
         <FadeIn variant="scale">

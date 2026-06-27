@@ -21,6 +21,9 @@ const Testimonials = dynamic(
   () => import("@/components/sections/Testimonials").then((m) => m.Testimonials),
 );
 const CTA = dynamic(() => import("@/components/sections/CTA").then((m) => m.CTA));
+const Contact = dynamic(
+  () => import("@/components/sections/Contact").then((m) => m.Contact),
+);
 
 export default function Home() {
   return (
@@ -35,6 +38,7 @@ export default function Home() {
         <Process />
         <Testimonials />
         <CTA />
+        <Contact />
       </main>
       <Footer />
     </>

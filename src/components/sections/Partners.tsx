@@ -9,7 +9,7 @@ import { GlowPulse } from "@/components/animations/GlowPulse";
 
 export function Partners() {
   return (
-    <section id="about" className="section-follow relative overflow-hidden">
+    <section id="about" className="section-follow relative overflow-hidden py-[70px]">
       <div className="section-glow" aria-hidden />
       <GlowPulse
         parallax={0.3}
@@ -24,7 +24,7 @@ export function Partners() {
           </h2>
         </FadeIn>
 
-        <StaggerContainer className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2.5 lg:grid-cols-6 lg:gap-3">
+        <StaggerContainer className="grid grid-cols-2 gap-[50px] sm:grid-cols-3 lg:grid-cols-6 lg:gap-[70px]">
           {partners.map((partner) => (
             <StaggerItem key={partner.id} variant="scale">
               <motion.div
