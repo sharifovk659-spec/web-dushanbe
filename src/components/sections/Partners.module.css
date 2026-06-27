@@ -1,0 +1,73 @@
+/* ─── Partners — infinite logo carousel ─── */
+
+.marqueeOuter {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 88px;
+  animation: partnersMarquee 38s linear infinite;
+  will-change: transform;
+}
+
+.marqueeOuter:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+@keyframes partnersMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: clamp(140px, 16vw, 180px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+    gap: 24px;
+  }
+
+  .marqueeOuter {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (min-width: 640px) {
+  .marqueeTrack {
+    padding-inline: 88px;
+    gap: 48px;
+  }
+}

@@ -7,7 +7,7 @@
   z-index: 50;
   display: flex;
   justify-content: center;
-  padding: 14px 12px 0;
+  padding: 14px 88px 0;
 }
 
 .bar {
@@ -300,6 +300,12 @@
   .drawer {
     left: auto;
     width: min(360px, calc(100vw - 48px));
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding-inline: 24px;
   }
 }
 

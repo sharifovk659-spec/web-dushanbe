@@ -21,7 +21,7 @@ const colorMap = {
 
 export function Stats() {
   return (
-    <section className="relative pb-4 sm:pb-5">
+    <section className="section-spacing relative">
       <div className="section-container">
         <StaggerContainer className="grid grid-cols-2 gap-2 sm:gap-2.5 lg:grid-cols-4">
           {stats.map((stat, i) => {

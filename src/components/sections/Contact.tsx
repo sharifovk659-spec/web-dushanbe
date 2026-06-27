@@ -32,6 +32,12 @@ const serviceOptions = [
   "Другое",
 ];
 
+const budgetOptions = [
+  "$500 – $1 000",
+  "$1 000 – $5 000",
+  "$5 000 – $10 000+",
+];
+
 const infoVariants = {
   hidden: { opacity: 0, y: 28 },
   visible: (i: number) => ({
@@ -56,6 +62,7 @@ type FormState = {
   phone: string;
   email: string;
   service: string;
+  budget: string;
   message: string;
 };
 
@@ -64,6 +71,7 @@ const initialForm: FormState = {
   phone: "",
   email: "",
   service: serviceOptions[0],
+  budget: budgetOptions[0],
   message: "",
 };
 
@@ -89,6 +97,7 @@ export function Contact() {
         `Телефон: ${form.phone}`,
         `Email: ${form.email}`,
         `Услуга: ${form.service}`,
+        `Бюджет: ${form.budget}`,
         "",
         form.message,
       ].join("\n"),
@@ -285,7 +294,7 @@ export function Contact() {
                     />
                   </div>
 
-                  <div className={`${styles.field} ${styles.fieldFull}`}>
+                  <div className={styles.field}>
                     <label className={styles.label} htmlFor="contact-service">
                       Услуга
                     </label>
@@ -297,6 +306,25 @@ export function Contact() {
                       onChange={(e) => updateField("service", e.target.value)}
                     >
                       {serviceOptions.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className={styles.field}>
+                    <label className={styles.label} htmlFor="contact-budget">
+                      Бюджет
+                    </label>
+                    <select
+                      id="contact-budget"
+                      className={styles.select}
+                      name="budget"
+                      value={form.budget}
+                      onChange={(e) => updateField("budget", e.target.value)}
+                    >
+                      {budgetOptions.map((option) => (
                         <option key={option} value={option}>
                           {option}
                         </option>
