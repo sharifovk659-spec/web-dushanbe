@@ -81,7 +81,7 @@ export function CTA() {
                 <h2 className="font-display max-w-xl text-2xl font-bold leading-tight tracking-tight text-text sm:text-3xl lg:text-4xl">
                   Готовы обсудить ваш проект?
                 </h2>
-                <Button href="mailto:hello@webdushanbe.tj" icon="arrow">
+                <Button href="#contacts" icon="arrow">
                   Обсудить проект
                 </Button>
               </div>
