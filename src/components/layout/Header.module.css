@@ -1,0 +1,365 @@
+/* ─── Header — centered compact bar ─── */
+
+.header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding: 14px 12px 0;
+}
+
+.bar {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+  align-items: center;
+  width: 100%;
+  max-width: 620px;
+  height: 84px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 4px;
+  background: rgba(10, 10, 10, 0.75);
+  padding-inline: 18px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition:
+    background 250ms ease-out,
+    border-color 250ms ease-out,
+    box-shadow 250ms ease-out;
+}
+
+.barScrolled {
+  background: rgba(10, 10, 10, 0.88);
+  box-shadow:
+    0 12px 44px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ─── Logo ─── */
+
+.logoLink {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.logoBox {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: transform 250ms ease-out;
+}
+
+.logoLink:hover .logoBox {
+  transform: rotate(6deg) scale(1.04);
+}
+
+.logoImg {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* ─── CTA with crawling worm ─── */
+
+.ctaWrap {
+  display: flex;
+  justify-content: center;
+  padding-inline: 8px;
+}
+
+.cta {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: rgba(6, 6, 6, 0.65);
+  padding: 0;
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background 250ms ease-out;
+}
+
+.ctaInner {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  padding: 11px 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+  transition: color 250ms ease-out;
+}
+
+/* Inner glow — lives INSIDE the button (clipped by overflow:hidden) */
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 6px;
+  background: radial-gradient(
+    120% 140% at 50% 120%,
+    rgba(201, 242, 77, 0.28) 0%,
+    rgba(201, 242, 77, 0.1) 38%,
+    transparent 68%
+  );
+  opacity: 0;
+  transition: opacity 320ms ease-out;
+}
+
+.cta:hover {
+  background: rgba(201, 242, 77, 0.05);
+}
+
+.cta:hover .ctaInner {
+  color: #ffffff;
+}
+
+.cta:hover::before {
+  opacity: 1;
+}
+
+.ctaArrow {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.65);
+  transition:
+    transform 250ms ease-out,
+    color 250ms ease-out;
+}
+
+.cta:hover .ctaArrow {
+  color: #c9f24d;
+  transform: translateX(2px);
+}
+
+/* Worm SVG sits on top of the border, clipped inside the button */
+.ctaWormSvg {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* The visible worm segment */
+.ctaWormRect,
+.ctaWormGlowRect {
+  fill: none;
+  stroke: #c9f24d;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  /* short dash = the worm, long gap = the rest of the perimeter */
+  stroke-dasharray: 14 86;
+  animation: ctaWormCrawl 6s linear infinite;
+}
+
+.ctaWormRect {
+  stroke-width: 1.4;
+}
+
+/* Wider, blurred copy → glow that trails right with the worm */
+.ctaWormGlowRect {
+  stroke-width: 2.4;
+  opacity: 0.5;
+  transition:
+    stroke-width 250ms ease-out,
+    opacity 250ms ease-out;
+}
+
+.cta:hover .ctaWormRect {
+  stroke-width: 1.6;
+}
+
+/* On hover: thinner shadow, still travelling together with the worm */
+.cta:hover .ctaWormGlowRect {
+  stroke-width: 1.8;
+  opacity: 0.6;
+}
+
+.ctaWormPaused {
+  animation: none;
+}
+
+@keyframes ctaWormCrawl {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* ─── Menu button ─── */
+
+.menuBtn {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  justify-self: end;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    border-color 250ms ease-out,
+    background 250ms ease-out,
+    box-shadow 250ms ease-out;
+}
+
+.menuBtn:hover {
+  border-color: rgba(201, 242, 77, 0.45);
+  background: rgba(201, 242, 77, 0.04);
+  box-shadow: 0 0 16px rgba(201, 242, 77, 0.1);
+}
+
+.menuLines {
+  display: flex;
+  width: 18px;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menuLine {
+  display: block;
+  height: 1.5px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.88);
+  transition:
+    transform 250ms ease-out,
+    background 250ms ease-out;
+}
+
+.menuBtn:hover .menuLine {
+  background: #ffffff;
+}
+
+.menuOpen .menuLine:first-child {
+  transform: translateY(3.75px) rotate(45deg);
+}
+
+.menuOpen .menuLine:last-child {
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+.menuOpen .menuLines {
+  gap: 0;
+}
+
+/* ─── Mobile drawer ─── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(4, 4, 4, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.drawer {
+  position: fixed;
+  top: calc(var(--header-offset, 98px) + 8px);
+  right: max(12px, calc(50% - 310px));
+  left: 12px;
+  z-index: 45;
+  max-height: calc(100vh - var(--header-offset, 98px) - 24px);
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  background: rgba(10, 10, 10, 0.96);
+  padding: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 644px) {
+  .drawer {
+    left: auto;
+    width: min(360px, calc(100vw - 48px));
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding-inline: 10px;
+  }
+
+  .bar {
+    height: 72px;
+    padding-inline: 12px;
+    grid-template-columns: 44px 1fr 44px;
+  }
+
+  .logoLink,
+  .menuBtn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logoBox {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logoImg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .ctaInner {
+    padding: 9px 12px;
+    font-size: 0.6875rem;
+    gap: 6px;
+  }
+
+  .ctaArrow {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .logoBox,
+  .logoImg,
+  .cta,
+  .ctaInner,
+  .ctaArrow,
+  .menuBtn,
+  .menuLine {
+    transition: none;
+  }
+
+  .ctaWormRect,
+  .ctaWormGlowRect {
+    animation: none;
+  }
+
+  .logoLink:hover .logoBox {
+    transform: none;
+  }
+}

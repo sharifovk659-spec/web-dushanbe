@@ -57,20 +57,20 @@ export function ProjectCard({ project }: { project: Project }) {
         }}
       >
         <div
-          className={`glass flex h-full min-h-[420px] flex-col overflow-hidden rounded-2xl transition-shadow duration-300 sm:min-h-[440px] ${
+          className={`glass flex h-full min-h-[420px] flex-col overflow-hidden rounded-sm transition-all duration-[250ms] ease-out sm:min-h-[440px] ${
             hovered
-              ? "shadow-[0_10px_36px_rgba(79,70,229,0.2)]"
-              : "shadow-[0_2px_14px_rgba(0,0,0,0.18)]"
+              ? "-translate-y-[5px] border-[rgba(201,242,77,0.35)] shadow-[0_10px_36px_rgba(201,242,77,0.12)]"
+              : "shadow-[0_2px_14px_rgba(0,0,0,0.2)]"
           }`}
         >
           <div className="flex items-center justify-between gap-2 p-4 pb-2">
-            <h3 className="text-base font-semibold text-text">{project.title}</h3>
-            <span className="shrink-0 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-text-secondary">
+            <h3 className="font-display text-base font-semibold text-text">{project.title}</h3>
+            <span className="shrink-0 rounded-sm border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-text-secondary">
               {project.category}
             </span>
           </div>
 
-          <div className="relative mx-3 overflow-hidden rounded-xl border border-white/10 sm:mx-4">
+          <div className="relative mx-3 overflow-hidden rounded-sm border border-white/10 sm:mx-4">
             <Image
               src={project.image}
               alt={`Скриншот проекта ${project.title}`}
@@ -97,7 +97,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <div className="mt-auto border-t border-white/8 p-4">
             <Link
               href={project.url}
-              className="btn-gradient inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white"
+              className="btn-gradient inline-flex w-full items-center justify-center gap-2 rounded-sm px-4 py-2.5 text-sm font-semibold text-[#050505]"
             >
               Смотреть проект
               <HiArrowRight className="h-4 w-4" />

@@ -24,8 +24,9 @@ function Stars() {
 
 export function Testimonials() {
   return (
-    <section className="section-spacing relative">
-      <div className="glow-blob -left-32 bottom-0 h-56 w-56 bg-primary/12" />
+    <section className="section-spacing relative overflow-hidden">
+      <div className="section-glow" aria-hidden />
+      <div className="glow-blob -left-32 bottom-0 h-56 w-56 bg-lime/10" />
 
       <div className="section-container relative">
         <SectionHeading
@@ -59,8 +60,7 @@ export function Testimonials() {
                 <GlassCard hover className="flex h-full flex-col p-4 sm:p-5">
                   <div
                     className={cn(
-                      "mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br text-sm font-semibold text-white",
-                      item.gradient,
+                      "mb-3 flex h-12 w-12 items-center justify-center rounded-sm border border-lime/25 bg-lime/10 text-sm font-semibold text-lime",
                     )}
                     aria-hidden
                   >

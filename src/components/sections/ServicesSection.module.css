@@ -1,0 +1,336 @@
+/* ─── Services Section — glass cards, global ambient bg shows through ─── */
+
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.1) 0%,
+    rgba(5, 5, 5, 0.16) 50%,
+    rgba(5, 5, 5, 0.1) 100%
+  );
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    gap: 20px;
+  }
+}
+
+.gridItem {
+  height: 100%;
+}
+
+/* ─── Card wrapper: no transform on hover ─── */
+.card {
+  position: relative;
+  height: 100%;
+}
+
+/* ─── Card inner: top border dim by default, brightens on hover ─── */
+.cardInner {
+  position: relative;
+  display: flex;
+  height: 100%;
+  min-height: 400px;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 28px;
+  transition: border-color 300ms ease;
+  will-change: border-color;
+}
+
+/* On hover: faint green border around */
+.card:hover .cardInner {
+  border-color: rgba(201, 242, 77, 0.28);
+}
+
+/* ─── Top line: draws from left to the end on hover ─── */
+.cardInner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 1px;
+  background: #c9f24d;
+  box-shadow: 0 0 6px rgba(201, 242, 77, 0.5);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 450ms ease;
+  pointer-events: none;
+}
+
+.card:hover .cardInner::before {
+  transform: scaleX(1);
+}
+
+@media (min-width: 1024px) {
+  .cardInner {
+    min-height: 440px;
+    padding: 48px;
+  }
+}
+
+.number {
+  pointer-events: none;
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  z-index: 1;
+  font-size: clamp(3.5rem, 9vw, 6.5rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.4px rgba(201, 242, 77, 0.35);
+  opacity: 0.85;
+  user-select: none;
+  transition:
+    -webkit-text-stroke-color 300ms ease,
+    opacity 300ms ease,
+    transform 300ms ease;
+  will-change: transform;
+}
+
+@media (min-width: 1024px) {
+  .number {
+    top: 32px;
+    right: 36px;
+  }
+}
+
+/* Number: small hover animation */
+.card:hover .number {
+  -webkit-text-stroke-color: rgba(201, 242, 77, 0.7);
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+/* ─── Icon box: same size/position/box; ONLY the icon color animates ─── */
+.iconBox {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(201, 242, 77, 0.35);
+  border-radius: 4px;
+  background: rgba(201, 242, 77, 0.1);
+  color: #c9f24d;
+  margin-bottom: 28px;
+  box-shadow: 0 0 18px rgba(201, 242, 77, 0.12);
+  filter: drop-shadow(0 0 6px rgba(201, 242, 77, 0.25));
+  transition: transform 300ms ease;
+  will-change: transform;
+}
+
+/* Icon tilts slightly on hover */
+.card:hover .iconBox {
+  transform: rotate(-6deg);
+}
+
+/* ─── Title: moves up 5px and turns neon green on hover ─── */
+.title {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  margin-bottom: 14px;
+  padding-right: clamp(3rem, 12vw, 5.5rem);
+  font-size: clamp(1.45rem, 2.8vw, 2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  overflow: hidden;
+}
+
+.titleDefault,
+.titleHover {
+  grid-area: 1 / 1;
+  transition:
+    transform 350ms ease,
+    opacity 350ms ease;
+  will-change: transform, opacity;
+}
+
+/* White by default; slides up & out on hover */
+.titleDefault {
+  color: #ffffff;
+}
+
+.card:hover .titleDefault {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+/* Green copy waits below; slides up into place on hover */
+.titleHover {
+  color: #c9f24d;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.card:hover .titleHover {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.description {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  max-width: 34rem;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.divider {
+  position: relative;
+  z-index: 2;
+  height: 1px;
+  margin: 24px 0 20px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.09) 18%,
+    rgba(255, 255, 255, 0.09) 82%,
+    transparent 100%
+  );
+}
+
+@media (min-width: 1024px) {
+  .divider {
+    margin: 32px 0 24px;
+  }
+}
+
+.footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tags {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  width: 100%;
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tagIconBox {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(201, 242, 77, 0.25);
+  border-radius: 3px;
+  background: rgba(201, 242, 77, 0.06);
+  transition:
+    border-color 300ms ease,
+    background-color 300ms ease;
+}
+
+/* Bottom tag icon boxes: small hover animation */
+.card:hover .tagIconBox {
+  border-color: rgba(201, 242, 77, 0.55);
+  background-color: rgba(201, 242, 77, 0.14);
+}
+
+.tagIcon {
+  width: 11px;
+  height: 11px;
+  color: #c9f24d;
+  transition: transform 300ms ease;
+}
+
+.card:hover .tagIcon {
+  transform: scale(1.12);
+}
+
+.tagLabel {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.3;
+}
+
+@media (min-width: 640px) {
+  .tagLabel {
+    font-size: 11px;
+  }
+}
+
+/* ─── Arrow: gray → green, moves right on hover ─── */
+.arrow {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.32);
+  opacity: 0.55;
+  transition:
+    color 300ms ease,
+    opacity 300ms ease,
+    transform 300ms ease;
+  will-change: transform;
+}
+
+.card:hover .arrow {
+  color: #c9f24d;
+  opacity: 1;
+  transform: translateX(6px);
+}

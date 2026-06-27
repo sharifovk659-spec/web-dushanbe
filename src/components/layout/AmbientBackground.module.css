@@ -1,0 +1,138 @@
+/* ─── Site-wide dark premium background — sweeping "C" arcs ─── */
+
+.ambient {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  contain: strict;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -10%, rgba(182, 255, 46, 0.022), transparent 55%),
+    linear-gradient(180deg, #040404 0%, #060606 45%, #040404 100%);
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+.arc {
+  position: absolute;
+  top: 50%;
+  width: min(80vw, 820px);
+  height: min(80vw, 820px);
+  border-radius: 50%;
+  filter: blur(70px);
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+}
+
+.arcLeft {
+  left: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 42%,
+    rgba(182, 255, 46, 0.04) 50%,
+    rgba(182, 255, 46, 0.16) 58%,
+    rgba(182, 255, 46, 0.05) 66%,
+    transparent 76%
+  );
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 42%, transparent 70%);
+  mask-image: linear-gradient(to right, #000 0%, #000 42%, transparent 70%);
+  animation: arcLeftSweep 22s ease-in-out infinite;
+}
+
+.arcRight {
+  right: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 42%,
+    rgba(182, 255, 46, 0.035) 50%,
+    rgba(182, 255, 46, 0.14) 58%,
+    rgba(182, 255, 46, 0.045) 66%,
+    transparent 76%
+  );
+  -webkit-mask-image: linear-gradient(to left, #000 0%, #000 42%, transparent 70%);
+  mask-image: linear-gradient(to left, #000 0%, #000 42%, transparent 70%);
+  animation: arcRightSweep 22s ease-in-out infinite;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 92% 82% at 50% 44%,
+    transparent 32%,
+    rgba(0, 0, 0, 0.42) 100%
+  );
+}
+
+@keyframes arcLeftSweep {
+  0%,
+  100% {
+    transform: translate3d(-55%, -50%, 0) scale(0.55);
+    opacity: 0.2;
+  }
+  30% {
+    transform: translate3d(-28%, -50%, 0) scale(1.05);
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(-8%, -50%, 0) scale(1.15);
+    opacity: 1;
+  }
+  72% {
+    transform: translate3d(-18%, -50%, 0) scale(0.6);
+    opacity: 0.4;
+  }
+}
+
+@keyframes arcRightSweep {
+  0%,
+  100% {
+    transform: translate3d(55%, -50%, 0) scale(0.55);
+    opacity: 0.2;
+  }
+  30% {
+    transform: translate3d(28%, -50%, 0) scale(1.02);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translate3d(8%, -50%, 0) scale(1.12);
+    opacity: 1;
+  }
+  72% {
+    transform: translate3d(-30%, -50%, 0) scaleX(0.7) scaleY(0.4);
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 767px) {
+  .arc {
+    filter: blur(52px);
+    width: 110vw;
+    height: 110vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc {
+    animation: none !important;
+    will-change: auto;
+    opacity: 0.5;
+  }
+
+  .arcLeft {
+    transform: translate3d(-30%, -50%, 0) scale(1);
+  }
+
+  .arcRight {
+    transform: translate3d(30%, -50%, 0) scale(1);
+  }
+}

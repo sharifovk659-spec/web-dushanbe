@@ -2,44 +2,27 @@
 
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Button } from "@/components/ui/Button";
-import { HeroTechCore } from "@/components/sections/HeroTechCore";
-import { GlowPulse } from "@/components/animations/GlowPulse";
-import { useIsDesktop } from "@/hooks/useMediaQuery";
+import { HeroShader } from "@/components/sections/HeroShader";
 
 export function Hero() {
-  const isDesktop = useIsDesktop();
-
   return (
     <section
       id="hero"
-      className="relative overflow-hidden pt-[4.25rem] pb-3 sm:pt-[4.5rem] sm:pb-4"
+      className="hero-banner relative flex min-h-[88vh] items-center overflow-hidden pt-[6.5rem] pb-12 sm:pt-[7rem] sm:pb-16"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <GlowPulse
-          parallax={isDesktop ? 0.3 : undefined}
-          color="primary"
-          className="-left-24 top-1/4 h-56 w-56"
-        />
-        <GlowPulse
-          parallax={isDesktop ? 0.2 : undefined}
-          color="accent"
-          className="-right-24 bottom-1/4 h-48 w-48 [animation-delay:2s]"
-        />
-      </div>
+      <HeroShader />
 
-      <div className="section-container relative grid w-full items-start gap-4 lg:grid-cols-2 lg:gap-6">
-        <div className="relative z-10 flex flex-col gap-3.5 sm:gap-4">
+      <div className="section-container relative z-10 w-full">
+        <div className="flex max-w-3xl flex-col gap-3.5 sm:gap-4 lg:max-w-4xl">
           <FadeIn eager variant="fadeUp">
-            <span className="glass inline-flex w-fit rounded-full border border-primary/20 px-4 py-1.5 text-xs font-medium text-text-secondary sm:text-sm">
+            <span className="inline-flex w-fit rounded-sm border border-white/10 bg-[rgba(11,11,11,0.65)] px-4 py-1.5 text-xs font-medium uppercase tracking-[0.1em] text-text-secondary sm:text-sm">
               IT-компания в Таджикистане
             </span>
           </FadeIn>
 
           <FadeIn eager delay={0.08} variant="fadeUp">
-            <h1 className="text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-[2.75rem] xl:text-5xl">
-              Создаем решения,
-              <br />
-              которые
+            <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+              <span className="lg:whitespace-nowrap">Создаем решения, которые</span>
               <br />
               <span className="gradient-text-hero">приносят клиентов</span>
             </h1>
@@ -66,10 +49,6 @@ export function Hero() {
             </div>
           </FadeIn>
         </div>
-
-        <FadeIn eager delay={0.12} variant="fadeRight" className="relative z-10 w-full">
-          <HeroTechCore />
-        </FadeIn>
       </div>
     </section>
   );

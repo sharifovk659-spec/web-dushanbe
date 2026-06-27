@@ -14,7 +14,7 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer id="blog" className="relative border-t border-white/8 py-5 sm:py-6">
+    <footer id="blog" className="relative border-t border-white/8 bg-[#050505] py-5 sm:py-6">
       <div className="section-container">
         <FadeIn variant="fadeUp">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-12 lg:gap-5">
@@ -32,7 +32,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   aria-label={label}
                   title={label}
-                  className="glass flex h-10 w-10 items-center justify-center rounded-xl text-text-secondary transition-all duration-300 hover:border-white/20 hover:text-text"
+                  className="glass flex h-10 w-10 items-center justify-center rounded-sm text-text-secondary transition-all duration-[250ms] ease-out hover:border-[rgba(201,242,77,0.35)] hover:text-lime"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -43,7 +43,7 @@ export function Footer() {
           <div className="lg:col-span-8">
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
               <div>
-                <h4 className="mb-3 text-sm font-semibold text-text">Услуги</h4>
+                <h4 className="font-display mb-3 text-sm font-semibold text-text">Услуги</h4>
                 <ul className="flex flex-col gap-2.5">
                   {footerLinks.services.map((link) => (
                     <li key={link.label}>
@@ -59,7 +59,7 @@ export function Footer() {
               </div>
 
               <div>
-                <h4 className="mb-3 text-sm font-semibold text-text">Компания</h4>
+                <h4 className="font-display mb-3 text-sm font-semibold text-text">Компания</h4>
                 <ul className="flex flex-col gap-2.5">
                   {footerLinks.company.map((link) => (
                     <li key={link.label}>
@@ -75,14 +75,14 @@ export function Footer() {
               </div>
 
               <div className="col-span-2 sm:col-span-1">
-                <h4 className="mb-3 text-sm font-semibold text-text">Контакты</h4>
+                <h4 className="font-display mb-3 text-sm font-semibold text-text">Контакты</h4>
                 <ul className="flex flex-col gap-2.5">
                   <li>
                     <a
                       href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
                       className="flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-text"
                     >
-                      <HiPhone className="h-4 w-4 shrink-0 text-primary" />
+                      <HiPhone className="h-4 w-4 shrink-0 text-lime" />
                       <span>
                         <span className="sr-only">Телефон: </span>
                         {siteConfig.phone}
@@ -94,7 +94,7 @@ export function Footer() {
                       href={`mailto:${siteConfig.email}`}
                       className="flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-text"
                     >
-                      <HiEnvelope className="h-4 w-4 shrink-0 text-primary" />
+                      <HiEnvelope className="h-4 w-4 shrink-0 text-lime" />
                       <span>
                         <span className="sr-only">Email: </span>
                         {siteConfig.email}
@@ -102,7 +102,7 @@ export function Footer() {
                     </a>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-text-secondary">
-                    <HiMapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                    <HiMapPin className="mt-0.5 h-4 w-4 shrink-0 text-lime" />
                     <span>
                       <span className="sr-only">Адрес: </span>
                       {siteConfig.address}

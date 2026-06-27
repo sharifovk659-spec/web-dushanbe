@@ -14,9 +14,9 @@ const iconMap = {
 };
 
 const colorMap = {
-  primary: "text-primary bg-primary/15 shadow-[0_0_16px_rgba(79,70,229,0.2)]",
-  lime: "text-lime bg-lime/15 shadow-[0_0_16px_rgba(132,204,22,0.2)]",
-  accent: "text-accent bg-accent/15 shadow-[0_0_16px_rgba(59,130,246,0.2)]",
+  primary: "text-primary bg-primary/15 shadow-[0_0_16px_rgba(201,242,77,0.2)]",
+  lime: "text-lime bg-lime/15 shadow-[0_0_16px_rgba(201,242,77,0.2)]",
+  accent: "text-accent bg-accent/15 shadow-[0_0_16px_rgba(201,242,77,0.2)]",
 };
 
 export function Stats() {
@@ -30,15 +30,15 @@ export function Stats() {
               <StaggerItem key={stat.label} variant="scale">
                 <motion.div
                   className={cn(
-                    "glass group rounded-2xl p-4 sm:p-5",
+                    "glass group rounded-sm p-4 sm:p-5",
                     "transition-shadow duration-300",
-                    "hover:shadow-[0_8px_32px_rgba(79,70,229,0.14)]",
+                    "hover:shadow-[0_8px_32px_rgba(201,242,77,0.14)]",
                   )}
                   whileHover={{ y: -4, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                 >
                   <div
                     className={cn(
-                      "mb-4 flex h-11 w-11 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110",
+                      "mb-4 flex h-11 w-11 items-center justify-center rounded-sm transition-transform duration-[250ms] ease-out group-hover:scale-[1.08]",
                       colorMap[stat.color],
                     )}
                   >

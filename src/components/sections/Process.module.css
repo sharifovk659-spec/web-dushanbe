@@ -1,0 +1,200 @@
+/* ─── Serpentine timeline (desktop) ─── */
+
+.timeline {
+  position: relative;
+  width: 100%;
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.probe {
+  visibility: hidden;
+  pointer-events: none;
+  fill: none;
+  stroke: none;
+}
+
+.baseLine {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.drawLine {
+  fill: none;
+  stroke: #c9f24d;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 8px rgba(201, 242, 77, 0.5));
+}
+
+.startDot {
+  position: absolute;
+  z-index: 6;
+  height: 14px;
+  width: 14px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #c9f24d;
+  box-shadow: 0 0 14px rgba(201, 242, 77, 0.55);
+}
+
+.node {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  height: 24px;
+  width: 24px;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  background: #050505;
+  box-shadow: none;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.node::after {
+  content: "";
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  transition: background 0.35s ease;
+}
+
+.nodeActive {
+  box-shadow: 0 0 12px rgba(201, 242, 77, 0.35);
+}
+
+.nodePrimary.nodeActive {
+  border-color: #c9f24d;
+}
+
+.nodePrimary.nodeActive::after {
+  background: #c9f24d;
+}
+
+.nodeLime.nodeActive {
+  border-color: #c9f24d;
+}
+
+.nodeLime.nodeActive::after {
+  background: #c9f24d;
+}
+
+.nodeAccent.nodeActive {
+  border-color: #c9f24d;
+}
+
+.nodeAccent.nodeActive::after {
+  background: #c9f24d;
+}
+
+.content {
+  position: absolute;
+  z-index: 4;
+  max-width: 320px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(calc(-50% + 20px));
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contentActive {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(-50%);
+}
+
+.contentRight {
+  text-align: left;
+}
+
+.contentLeft {
+  text-align: right;
+}
+
+.stepNum {
+  display: block;
+  margin-bottom: 6px;
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.4px rgba(255, 255, 255, 0.2);
+  transition: -webkit-text-stroke 0.4s ease;
+}
+
+.contentActive .stepNumPrimary,
+.contentActive .stepNumLime,
+.contentActive .stepNumAccent {
+  -webkit-text-stroke: 1.4px rgba(201, 242, 77, 0.85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wormV {
+    animation: none;
+    opacity: 0.5;
+  }
+
+  .content,
+  .node {
+    transition: none;
+  }
+}
+
+/* ─── Mobile vertical worm line ─── */
+
+.wormV {
+  pointer-events: none;
+  position: absolute;
+  left: 1.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  overflow: visible;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(201, 242, 77, 0.35) 46%,
+    #c9f24d 50%,
+    rgba(201, 242, 77, 0.35) 54%,
+    transparent 62%,
+    transparent 100%
+  );
+  background-size: 100% 35%;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 5px rgba(201, 242, 77, 0.7));
+  animation: wormFlowV 4.6s linear infinite;
+}
+
+@keyframes wormFlowV {
+  0% {
+    background-position: 0 -35%;
+  }
+  100% {
+    background-position: 0 135%;
+  }
+}

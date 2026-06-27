@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { siteConfig } from "@/data/content";
 import { images } from "@/lib/images";
+import { AmbientBackground } from "@/components/layout/AmbientBackground";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import "./globals.css";
 
@@ -11,8 +12,15 @@ const inter = Inter({
   display: "swap",
 });
 
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
+
 export const viewport: Viewport = {
-  themeColor: "#050816",
+  themeColor: "#050505",
   width: "device-width",
   initialScale: 1,
 };
@@ -24,7 +32,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description:
-    "WEB DUSHANBE — IT-компания в Душанбе. Создаём сайты, мобильные приложения, CRM-системы и UI/UX дизайн. 5+ лет опыта, 25+ проектов.",
+    "WEB DUSHANBE — IT-компания в Душанбе. Создаём сайты, мобильные приложения, CRM-системы и UI/UX дизайн. 7+ лет опыта, 25+ проектов.",
   keywords: [
     "веб-разработка Душанбе",
     "создание сайтов Таджикистан",
@@ -114,8 +122,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} font-sans antialiased`}>
-        <SmoothScroll>{children}</SmoothScroll>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
+        <AmbientBackground />
+        <div className="site-shell">
+          <SmoothScroll>{children}</SmoothScroll>
+        </div>
       </body>
     </html>
   );

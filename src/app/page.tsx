@@ -8,8 +8,11 @@ import { Stats } from "@/components/sections/Stats";
 const Projects = dynamic(
   () => import("@/components/sections/Projects").then((m) => m.Projects),
 );
-const Services = dynamic(
-  () => import("@/components/sections/Services").then((m) => m.Services),
+const ServicesSection = dynamic(
+  () =>
+    import("@/components/sections/ServicesSection").then(
+      (m) => m.ServicesSection,
+    ),
 );
 const Process = dynamic(
   () => import("@/components/sections/Process").then((m) => m.Process),
@@ -28,7 +31,7 @@ export default function Home() {
         <Partners />
         <Stats />
         <Projects />
-        <Services />
+        <ServicesSection />
         <Process />
         <Testimonials />
         <CTA />

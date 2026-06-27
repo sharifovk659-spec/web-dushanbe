@@ -1,3 +1,10 @@
+export type ThemeColor = "primary" | "accent" | "lime";
+
+export type ServiceTag = {
+  label: string;
+  icon: string;
+};
+
 export const siteConfig = {
   name: "WEB DUSHANBE",
   tagline: "Создаём цифровые продукты, которые приносят результат",
@@ -103,6 +110,11 @@ export const services = [
       "Сайты, лендинги и веб-платформы на React, Next.js и Laravel с фокусом на конверсию.",
     icon: "code",
     color: "primary" as const,
+    tags: [
+      { label: "WEB APPS & DASHBOARDS", icon: "layout" },
+      { label: "API & BACKEND", icon: "api" },
+      { label: "E-COMMERCE", icon: "cart" },
+    ],
   },
   {
     id: "mobile",
@@ -111,6 +123,11 @@ export const services = [
       "Нативные и кроссплатформенные приложения на Flutter для iOS и Android.",
     icon: "mobile",
     color: "accent" as const,
+    tags: [
+      { label: "iOS & ANDROID", icon: "mobile" },
+      { label: "FLUTTER", icon: "flutter" },
+      { label: "APP STORE", icon: "store" },
+    ],
   },
   {
     id: "crm",
@@ -118,7 +135,12 @@ export const services = [
     description:
       "Автоматизация бизнес-процессов, управление клиентами и аналитика в одном решении.",
     icon: "crm",
-    color: "lime" as const,
+    color: "primary" as const,
+    tags: [
+      { label: "AUTOMATION", icon: "automation" },
+      { label: "ANALYTICS", icon: "chart" },
+      { label: "INTEGRATIONS", icon: "link" },
+    ],
   },
   {
     id: "design",
@@ -126,15 +148,12 @@ export const services = [
     description:
       "Исследование, прототипирование и визуальный дизайн интерфейсов премиум-класса.",
     icon: "design",
-    color: "primary" as const,
-  },
-  {
-    id: "seo",
-    title: "SEO продвижение",
-    description:
-      "Продвижение в поисковых системах, оптимизация контента и рост органического трафика.",
-    icon: "seo",
     color: "accent" as const,
+    tags: [
+      { label: "UI/UX", icon: "design" },
+      { label: "PROTOTYPING", icon: "prototype" },
+      { label: "DESIGN SYSTEMS", icon: "system" },
+    ],
   },
 ];
 
@@ -207,7 +226,6 @@ export const footerLinks = {
     { label: "Мобильные приложения", href: "#services" },
     { label: "CRM системы", href: "#services" },
     { label: "UI/UX дизайн", href: "#services" },
-    { label: "SEO продвижение", href: "#services" },
   ],
   company: [
     { label: "О нас", href: "#about" },

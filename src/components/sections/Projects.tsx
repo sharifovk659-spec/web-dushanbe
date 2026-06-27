@@ -6,10 +6,11 @@ import { GlowPulse } from "@/components/animations/GlowPulse";
 
 export function Projects() {
   return (
-    <section id="projects" className="section-spacing relative">
+    <section id="projects" className="section-spacing relative overflow-hidden">
+      <div className="section-glow" aria-hidden />
       <GlowPulse
         parallax={0.4}
-        color="mixed"
+        color="lime"
         className="left-1/2 top-0 h-48 w-48 -translate-x-1/2"
       />
 

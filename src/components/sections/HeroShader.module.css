@@ -1,0 +1,47 @@
+/* ─── Full-bleed animated WebGL shader background for the hero banner ─── */
+
+.shader {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.canvasLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.canvasLayer shader-art,
+.canvasLayer shader-art canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Keep hero text readable over the bright shader */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 3, 3, 0.85) 0%,
+      rgba(3, 3, 3, 0.45) 42%,
+      rgba(3, 3, 3, 0.2) 100%
+    ),
+    linear-gradient(180deg, rgba(3, 3, 3, 0.35) 0%, transparent 28%, rgba(3, 3, 3, 0.55) 100%);
+}
+
+@media (max-width: 767px) {
+  .overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 3, 3, 0.62) 0%,
+      rgba(3, 3, 3, 0.5) 45%,
+      rgba(3, 3, 3, 0.78) 100%
+    );
+  }
+}

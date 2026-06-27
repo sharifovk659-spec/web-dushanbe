@@ -9,16 +9,17 @@ import { GlowPulse } from "@/components/animations/GlowPulse";
 
 export function Partners() {
   return (
-    <section id="about" className="section-follow relative">
+    <section id="about" className="section-follow relative overflow-hidden">
+      <div className="section-glow" aria-hidden />
       <GlowPulse
         parallax={0.3}
-        color="primary"
+        color="lime"
         className="left-1/2 top-0 h-40 w-40 -translate-x-1/2"
       />
 
       <div className="section-container relative">
         <FadeIn variant="fadeUp">
-          <h2 className="mb-3 text-center text-xl font-bold tracking-tight text-text sm:mb-4 sm:text-2xl">
+          <h2 className="font-display mb-3 text-center text-xl font-bold tracking-tight text-text sm:mb-4 sm:text-2xl">
             Нам доверяют
           </h2>
         </FadeIn>
@@ -27,7 +28,7 @@ export function Partners() {
           {partners.map((partner) => (
             <StaggerItem key={partner.id} variant="scale">
               <motion.div
-                className="partner-card group relative flex h-[4.25rem] items-center justify-center rounded-2xl px-3 sm:h-[5rem] sm:px-4"
+                className="partner-card group relative flex h-[4.25rem] items-center justify-center rounded-sm px-3 sm:h-[5rem] sm:px-4"
                 whileHover={{ scale: 1.03 }}
                 transition={{ type: "spring", stiffness: 320, damping: 22 }}
               >

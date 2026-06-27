@@ -20,14 +20,11 @@ export function Button({
   onClick,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 sm:text-base sm:px-7 sm:py-3.5";
+    "inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold transition-all duration-[250ms] ease-out sm:text-base sm:px-7 sm:py-3.5";
 
   const variants = {
-    primary: cn("btn-gradient text-white", className),
-    outline: cn(
-      "glass text-text hover:border-white/20 hover:bg-white/5",
-      className,
-    ),
+    primary: cn("btn-gradient", className),
+    outline: cn("btn-outline-lime rounded-sm", className),
   };
 
   const content = (
