@@ -45,6 +45,18 @@ export function useProcessTimeline({ section, drawPath, probePath, stepCount }: 
       frame.stepVisible.forEach((visible, i) => {
         steps[i]?.classList.toggle(styles.contentActive, visible);
       });
+
+      const lastNode = nodes[nodes.length - 1];
+      const lastStep = steps[steps.length - 1];
+      if (lastNode && lastStep) {
+        const rect = lastNode.getBoundingClientRect();
+        const inView =
+          rect.top < window.innerHeight * 0.88 && rect.bottom > window.innerHeight * 0.12;
+        if (inView && scrollProgress >= 0.68) {
+          lastNode.classList.add(styles.nodeActive);
+          lastStep.classList.add(styles.contentActive);
+        }
+      }
     };
 
     const remeasure = (scrollProgress: number) => {
@@ -68,24 +80,32 @@ export function useProcessTimeline({ section, drawPath, probePath, stepCount }: 
 
     const scrollTrigger = ScrollTrigger.create({
       trigger: timeline,
-      start: "top 78%",
-      end: "bottom 22%",
-      scrub: 0.75,
+      start: "top 88%",
+      end: "bottom bottom",
+      scrub: 0.55,
       invalidateOnRefresh: true,
       onUpdate: (self) => applyFrame(self.progress),
       onRefresh: (self) => remeasure(self.progress),
+      onLeave: () => applyFrame(1),
+      onLeaveBack: () => applyFrame(0),
     });
 
     const onResize = () => remeasure(scrollTrigger.progress);
     window.addEventListener("resize", onResize);
 
-    requestAnimationFrame(() => {
+    const refreshTimeline = () => {
       ScrollTrigger.refresh();
       remeasure(scrollTrigger.progress);
-    });
+    };
+
+    requestAnimationFrame(refreshTimeline);
+    const refreshTimers = [150, 450, 900].map((ms) =>
+      window.setTimeout(refreshTimeline, ms),
+    );
 
     return () => {
       window.removeEventListener("resize", onResize);
+      refreshTimers.forEach((id) => window.clearTimeout(id));
       scrollTrigger.kill();
     };
   }, [section, drawPath, probePath, stepCount]);

@@ -110,7 +110,7 @@ export function Process() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-spacing relative overflow-hidden">
+    <section ref={sectionRef} className="section-spacing relative overflow-x-hidden">
       <div className="section-glow" aria-hidden />
       <GlowPulse color="lime" className="right-0 top-1/4 h-40 w-40 opacity-60" />
       <div className="section-container">
@@ -122,7 +122,7 @@ export function Process() {
 
         <div
           className={cn("process-timeline relative mx-auto mt-8 hidden lg:block", styles.timeline)}
-          style={{ height: `${STEP_COUNT * 26}rem` }}
+          style={{ height: `${STEP_COUNT * 27 + 6}rem` }}
         >
           <svg
             className={styles.svg}

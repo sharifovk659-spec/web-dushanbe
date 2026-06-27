@@ -45,3 +45,5 @@ web-dushanbe.zip
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

@@ -59,6 +59,12 @@ export function buildSerpentinePath(stepCount: number): string {
     d = appendSegment(d, i, stepCount);
   }
 
+  const last = getNodePosition(stepCount - 1, stepCount);
+  const vbH = getViewBoxHeight(stepCount);
+  if (last.y < vbH) {
+    d += ` L ${last.x} ${vbH}`;
+  }
+
   return d;
 }
 
@@ -99,9 +105,16 @@ export function progressToDrawnLen(metrics: TimelineMetrics, scrollProgress: num
   const drawT = Math.min(1, local / TIMELINE_PHASES.drawEnd);
 
   const start = index === 0 ? 0 : metrics.nodeLens[index - 1];
-  const end = index < count - 1 ? metrics.nodeLens[index] : metrics.total;
+  const end = metrics.nodeLens[index];
+  const nodeDrawn = start + (end - start) * drawT;
 
-  return start + (end - start) * drawT;
+  if (index === count - 1 && local > TIMELINE_PHASES.drawEnd) {
+    const tailT = (local - TIMELINE_PHASES.drawEnd) / (1 - TIMELINE_PHASES.drawEnd);
+    const tailStart = metrics.nodeLens[count - 1];
+    return tailStart + (metrics.total - tailStart) * clamp01(tailT);
+  }
+
+  return nodeDrawn;
 }
 
 export function applyDrawProgress(
@@ -128,15 +141,27 @@ export function computeTimelineFrame(
   const count = metrics.nodeLens.length;
   const t = clamp01(scrollProgress);
 
-  const nodeActive = metrics.nodeLens.map((len) => drawnLen >= len - 0.5);
+  const nodeActive = metrics.nodeLens.map((len, i) => {
+    if (i === count - 1 && t >= 0.76) return true;
+    return drawnLen >= len - 0.5;
+  });
 
   const stepVisible = metrics.nodeLens.map((len, i) => {
     const local = getSegmentLocal(t, i, count);
     const lineReached = drawnLen >= len - 0.5;
-    const segmentPassed = t >= (i + 1) / count - 0.001;
-    const revealMoment = local >= TIMELINE_PHASES.revealStart && lineReached;
 
-    return segmentPassed || revealMoment;
+    if (i === count - 1) {
+      return lineReached || t >= 0.76;
+    }
+
+    if (i === count - 2) {
+      return lineReached && (local >= 0.62 || t >= (i + 1) / count - 0.1);
+    }
+
+    if (!lineReached) return false;
+
+    if (local >= TIMELINE_PHASES.revealStart) return true;
+    return t >= (i + 1) / count - 0.06;
   });
 
   return { nodeActive, stepVisible };
