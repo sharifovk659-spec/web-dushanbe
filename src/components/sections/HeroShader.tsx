@@ -4,18 +4,18 @@ import { useEffect, useRef } from "react";
 import styles from "./HeroShader.module.css";
 
 const SHADER_MARKUP = `
-<shader-art autoplay>
-  <uniform type="float" name="scale" value=".4" />
+<shader-art autoplay play-state="running">
+  <uniform type="float" name="scale" value=".38" />
   <uniform type="float" name="ax" value="5" />
   <uniform type="float" name="ay" value="7" />
   <uniform type="float" name="az" value="9" />
   <uniform type="float" name="aw" value="13" />
   <uniform type="float" name="bx" value="1" />
   <uniform type="float" name="by" value="1" />
-  <uniform type="color" name="color1" value="#ffffff" />
-  <uniform type="color" name="color2" value="#ffafaf" />
-  <uniform type="color" name="color3" value="#0099ff" />
-  <uniform type="color" name="color4" value="#aaffff" />
+  <uniform type="color" name="color1" value="#050505" />
+  <uniform type="color" name="color2" value="#c9f24d" />
+  <uniform type="color" name="color3" value="#1a2608" />
+  <uniform type="color" name="color4" value="#d4f87a" />
 
   <script type="buffer" name="position" data-size="2">
     [-1, 1, -1,-1, 1,1, 1, 1, -1,-1, 1,-1]
@@ -73,52 +73,81 @@ const SHADER_MARKUP = `
       vec3 color = mix(color1, color2, clamp((n*n)*8.,0.0,1.0));
       color = mix(color, color3, clamp(length(v1),0.0,1.0));
       color = mix(color, color4, clamp(length(v2.x),0.0,1.0));
-      color /= n*n + n * 7.;
+      color /= n*n + n * 5.;
       gl_FragColor = vec4(color,1.);
     }
   </script>
 </shader-art>
 `;
 
+function removeGuiPanels() {
+  document.querySelectorAll(".dg.ac, .dg.main").forEach((el) => el.remove());
+}
+
 export function HeroShader() {
   const hostRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let cancelled = false;
     const host = hostRef.current;
+    const root = rootRef.current;
+    if (!host || !root) return;
 
-    (async () => {
-      const [{ ShaderArt }, { UniformPlugin }] = await Promise.all([
-        import("shader-art"),
-        import("@shader-art/plugin-uniform"),
-      ]);
+    let disposed = false;
 
-      if (cancelled) return;
+    const init = async () => {
+      try {
+        const [{ ShaderArt }, { UniformPlugin }] = await Promise.all([
+          import("shader-art"),
+          import("@shader-art/plugin-uniform"),
+        ]);
 
-      if (!customElements.get("shader-art")) {
-        ShaderArt.register([() => new UniformPlugin()]);
+        if (disposed) return;
+
+        if (!customElements.get("shader-art")) {
+          ShaderArt.register([() => new UniformPlugin()]);
+        }
+
+        host.replaceChildren();
+        const mount = document.createElement("div");
+        mount.innerHTML = SHADER_MARKUP.trim();
+        const shaderEl = mount.firstElementChild;
+        if (!shaderEl) throw new Error("shader-art element missing");
+
+        host.appendChild(shaderEl);
+        root.classList.remove(styles.fallback);
+
+        const kick = () => {
+          if (disposed) return;
+          const el = host.querySelector("shader-art") as HTMLElement | null;
+          if (el) {
+            el.setAttribute("autoplay", "");
+            el.setAttribute("play-state", "running");
+          }
+          removeGuiPanels();
+        };
+
+        requestAnimationFrame(kick);
+        window.setTimeout(kick, 80);
+        window.setTimeout(kick, 320);
+      } catch (error) {
+        console.error("[HeroShader] WebGL init failed:", error);
+        if (!disposed) root.classList.add(styles.fallback);
       }
+    };
 
-      if (host && !host.firstElementChild) {
-        host.innerHTML = SHADER_MARKUP;
-      }
-
-      const removeGuiPanels = () =>
-        document.querySelectorAll(".dg.ac, .dg.main").forEach((el) => el.remove());
-      removeGuiPanels();
-      requestAnimationFrame(removeGuiPanels);
-      setTimeout(removeGuiPanels, 120);
-    })();
+    void init();
 
     return () => {
-      cancelled = true;
-      if (host) host.innerHTML = "";
-      document.querySelectorAll(".dg.ac, .dg.main").forEach((el) => el.remove());
+      disposed = true;
+      host.replaceChildren();
+      root.classList.remove(styles.fallback);
+      removeGuiPanels();
     };
   }, []);
 
   return (
-    <div className={styles.shader} aria-hidden>
+    <div ref={rootRef} className={`${styles.shader} ${styles.fallback}`} aria-hidden>
       <div ref={hostRef} className={styles.canvasLayer} />
       <div className={styles.overlay} />
     </div>

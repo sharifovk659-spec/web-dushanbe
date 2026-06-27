@@ -16,8 +16,9 @@
 .canvasLayer shader-art,
 .canvasLayer shader-art canvas {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100%;
 }
 
 /* Keep hero text readable over the bright shader */
@@ -28,11 +29,19 @@
   background:
     linear-gradient(
       90deg,
-      rgba(3, 3, 3, 0.85) 0%,
-      rgba(3, 3, 3, 0.45) 42%,
-      rgba(3, 3, 3, 0.2) 100%
+      rgba(3, 3, 3, 0.82) 0%,
+      rgba(3, 3, 3, 0.38) 38%,
+      rgba(3, 3, 3, 0.08) 72%,
+      transparent 100%
     ),
-    linear-gradient(180deg, rgba(3, 3, 3, 0.35) 0%, transparent 28%, rgba(3, 3, 3, 0.55) 100%);
+    linear-gradient(180deg, rgba(3, 3, 3, 0.28) 0%, transparent 30%, rgba(3, 3, 3, 0.45) 100%);
+}
+
+.fallback {
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 40%, rgba(201, 242, 77, 0.22), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201, 242, 77, 0.08), transparent 60%),
+    #050505;
 }
 
 @media (max-width: 767px) {
