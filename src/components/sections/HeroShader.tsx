@@ -85,6 +85,7 @@ export function HeroShader() {
 
   useEffect(() => {
     let cancelled = false;
+    const host = hostRef.current;
 
     (async () => {
       const [{ ShaderArt }, { UniformPlugin }] = await Promise.all([
@@ -98,12 +99,10 @@ export function HeroShader() {
         ShaderArt.register([() => new UniformPlugin()]);
       }
 
-      const host = hostRef.current;
       if (host && !host.firstElementChild) {
         host.innerHTML = SHADER_MARKUP;
       }
 
-      // UniformPlugin always injects a dat.GUI panel into <body>; remove it.
       const removeGuiPanels = () =>
         document.querySelectorAll(".dg.ac, .dg.main").forEach((el) => el.remove());
       removeGuiPanels();
@@ -113,7 +112,7 @@ export function HeroShader() {
 
     return () => {
       cancelled = true;
-      if (hostRef.current) hostRef.current.innerHTML = "";
+      if (host) host.innerHTML = "";
       document.querySelectorAll(".dg.ac, .dg.main").forEach((el) => el.remove());
     };
   }, []);
