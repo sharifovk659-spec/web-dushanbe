@@ -1,0 +1,134 @@
+/* ─── Footer — subtle lime background motion ─── */
+
+.footer {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #050505;
+  padding-block: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .footer {
+    padding-block: 1.5rem;
+  }
+}
+
+.bg {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.topLine {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 242, 77, 0.08) 20%,
+    rgba(201, 242, 77, 0.32) 50%,
+    rgba(201, 242, 77, 0.08) 80%,
+    transparent 100%
+  );
+  background-size: 220% 100%;
+  animation: footerLineDrift 16s ease-in-out infinite;
+  opacity: 0.55;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+  will-change: transform, opacity;
+}
+
+.glowLeft {
+  top: -55%;
+  left: 8%;
+  width: min(42vw, 360px);
+  height: min(28vw, 220px);
+  background: radial-gradient(circle, rgba(201, 242, 77, 0.09) 0%, transparent 72%);
+  animation: footerGlowLeft 18s ease-in-out infinite;
+}
+
+.glowRight {
+  right: 6%;
+  bottom: -70%;
+  width: min(38vw, 320px);
+  height: min(26vw, 200px);
+  background: radial-gradient(circle, rgba(201, 242, 77, 0.07) 0%, transparent 72%);
+  animation: footerGlowRight 20s ease-in-out infinite;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes footerLineDrift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.35;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.7;
+  }
+}
+
+@keyframes footerGlowLeft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(28px, 10px, 0) scale(1.06);
+    opacity: 0.65;
+  }
+}
+
+@keyframes footerGlowRight {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate3d(-24px, -8px, 0) scale(1.05);
+    opacity: 0.58;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topLine,
+  .glowLeft,
+  .glowRight {
+    animation: none;
+  }
+
+  .topLine {
+    opacity: 0.45;
+    background-position: 50% 50%;
+  }
+
+  .glowLeft,
+  .glowRight {
+    opacity: 0.4;
+  }
+}

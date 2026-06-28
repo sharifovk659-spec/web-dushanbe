@@ -280,6 +280,10 @@
   color: #ffffff;
 }
 
+.selectPlaceholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+
 .submitBtn {
   display: inline-flex;
   align-items: center;

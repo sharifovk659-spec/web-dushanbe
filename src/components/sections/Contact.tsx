@@ -71,7 +71,7 @@ const initialForm: FormState = {
   phone: "",
   email: "",
   service: serviceOptions[0],
-  budget: budgetOptions[0],
+  budget: "",
   message: "",
 };
 
@@ -319,11 +319,15 @@ export function Contact() {
                     </label>
                     <select
                       id="contact-budget"
-                      className={styles.select}
+                      className={`${styles.select} ${!form.budget ? styles.selectPlaceholder : ""}`}
                       name="budget"
                       value={form.budget}
                       onChange={(e) => updateField("budget", e.target.value)}
+                      required
                     >
+                      <option value="" disabled>
+                        Выбрать бюджет
+                      </option>
                       {budgetOptions.map((option) => (
                         <option key={option} value={option}>
                           {option}

@@ -4,6 +4,7 @@ import { HiPhone, HiEnvelope, HiMapPin } from "react-icons/hi2";
 import { siteConfig, footerLinks } from "@/data/content";
 import { Logo } from "@/components/ui/Logo";
 import { FadeIn } from "@/components/ui/FadeIn";
+import styles from "./Footer.module.css";
 
 const socials = [
   { Icon: FaInstagram, href: "https://instagram.com/webdushanbe", label: "Instagram" },
@@ -14,8 +15,15 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer id="blog" className="relative border-t border-white/8 bg-[#050505] py-5 sm:py-6">
-      <div className="section-container">
+    <footer id="blog" className={styles.footer}>
+      <div className={styles.bg} aria-hidden>
+        <div className={styles.topLine} />
+        <div className={`${styles.glow} ${styles.glowLeft}`} />
+        <div className={`${styles.glow} ${styles.glowRight}`} />
+        <div className={styles.noise} />
+      </div>
+
+      <div className={`section-container ${styles.inner}`}>
         <FadeIn variant="fadeUp">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-12 lg:gap-5">
           <div className="sm:col-span-2 lg:col-span-4">
