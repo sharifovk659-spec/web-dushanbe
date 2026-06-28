@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { siteConfig } from "@/data/content";
 import { images } from "@/lib/images";
 import { AmbientBackground } from "@/components/layout/AmbientBackground";
+import { FloatingContacts } from "@/components/layout/FloatingContacts";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import "./globals.css";
 
@@ -127,6 +128,7 @@ export default function RootLayout({
         <div className="site-shell">
           <SmoothScroll>{children}</SmoothScroll>
         </div>
+        <FloatingContacts />
       </body>
     </html>
   );

@@ -33,9 +33,9 @@ const serviceOptions = [
 ];
 
 const budgetOptions = [
-  "$500 – $1 000",
-  "$1 000 – $5 000",
-  "$5 000 – $10 000+",
+  "5 000 – 10 000 TJ",
+  "10 000 – 50 000 TJ",
+  "50 000 – 100 000+ TJ",
 ];
 
 const infoVariants = {
