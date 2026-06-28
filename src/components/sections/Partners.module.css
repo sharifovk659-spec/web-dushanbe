@@ -24,7 +24,7 @@
   display: flex;
   width: max-content;
   align-items: center;
-  gap: 88px;
+  gap: 50px;
   animation: partnersMarquee 38s linear infinite;
   will-change: transform;
 }

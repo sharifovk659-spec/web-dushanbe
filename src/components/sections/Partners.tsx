@@ -27,7 +27,15 @@ function PartnerLogo({ partner }: { partner: (typeof partners)[number] }) {
 
 export function Partners() {
   return (
-    <section id="about" className="relative overflow-hidden bg-[#050505] py-[88px]">
+    <section id="about" className="relative overflow-hidden bg-[#050505] py-[50px]">
+      <div className="section-container relative mb-[50px]">
+        <FadeIn variant="fadeUp">
+          <h2 className="font-display text-center text-xl font-bold tracking-tight text-text sm:text-2xl">
+            Нам доверяют
+          </h2>
+        </FadeIn>
+      </div>
+
       <div className={styles.marqueeOuter} aria-label="Партнёры компании">
         <div className={styles.marqueeTrack}>
           {carouselPartners.map((partner, index) => (
@@ -40,14 +48,6 @@ export function Partners() {
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="section-container relative">
-        <FadeIn variant="fadeUp">
-          <h2 className="font-display mt-[88px] text-center text-xl font-bold tracking-tight text-text sm:text-2xl">
-            Нам доверяют
-          </h2>
-        </FadeIn>
       </div>
     </section>
   );
