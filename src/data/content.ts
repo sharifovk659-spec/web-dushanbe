@@ -51,16 +51,54 @@ export const stats = [
   },
 ];
 
+export const founder = {
+  eyebrow: "Наш основатель",
+  name: "Акбар Ядгаров",
+  image: "/images/founder.svg",
+  instagram: {
+    label: "Мой Instagram",
+    handle: "webdushanbe",
+    url: "https://instagram.com/webdushanbe",
+  },
+  quote:
+    "Начать цифровую трансформацию бизнеса никогда не поздно. Мы создаём решения, которые помогают компаниям расти в Таджикистане и за его пределами. Наши клиенты получают полный цикл разработки — от идеи до запуска и поддержки.",
+  achievements: [
+    { highlight: "7 ЛЕТ", text: "опыта в веб-разработке и цифровых продуктах" },
+    { highlight: "25+", text: "завершённых проектов для бизнеса" },
+    { highlight: "50+", text: "клиентов доверяют нашей команде" },
+    { highlight: "99%", text: "положительных отзывов от партнёров" },
+    { highlight: "10+", text: "долгосрочных контрактов с клиентами" },
+    { highlight: "CRM, E-COMMERCE", text: "и мобильные приложения под ключ" },
+    { highlight: "СОБСТВЕННЫЕ", text: "продукты для автоматизации бизнеса" },
+    { highlight: "МАСШТАБИРУЕМ", text: "продажи через цифровые решения" },
+    { highlight: "СНИЖАЕМ", text: "затраты на маркетинг через автоматизацию" },
+  ],
+  cta: "Начать работу с нами",
+};
+
 export const partners = [
-  { name: "InovaAuto", id: "inovaauto" },
-  { name: "SIYOMA", id: "siyoma" },
-  { name: "Somon.tj", id: "somon" },
-  { name: "MegaFood", id: "megafood" },
-  { name: "TajPay", id: "tajpay" },
-  { name: "Dushanbe Plaza", id: "plaza" },
+  { name: "Choice", id: "choice" },
+  { name: "Deliveroo", id: "deliveroo" },
+  { name: "Grove", id: "grove" },
+  { name: "Hermes", id: "hermes" },
+  { name: "Iland", id: "iland" },
+  { name: "Min", id: "min" },
+  { name: "OFCO", id: "ofco" },
+  { name: "Sharjah", id: "sharjah" },
+  { name: "White", id: "white" },
+  { name: "Душанбе Водоканал", id: "vodokanal" },
 ];
 
-export const projects = [
+export type PortfolioItem = {
+  id: string;
+  title: string;
+  category: string;
+  image: string;
+  features: string[];
+  url: string;
+};
+
+export const projects: PortfolioItem[] = [
   {
     id: "inovaauto",
     title: "InovaAuto",
@@ -99,6 +137,48 @@ export const projects = [
       "SMS",
     ],
     url: "#",
+  },
+];
+
+export const products: PortfolioItem[] = [
+  {
+    id: "crm-pro",
+    title: "WEB CRM Pro",
+    category: "SaaS",
+    image: "/images/products/crm-pro.webp",
+    features: [
+      "Воронка продаж",
+      "Управление клиентами",
+      "Аналитика и отчёты",
+      "Интеграции",
+    ],
+    url: "#contacts",
+  },
+  {
+    id: "shopkit",
+    title: "ShopKit",
+    category: "E-commerce",
+    image: "/images/products/shopkit.webp",
+    features: [
+      "Каталог товаров",
+      "Корзина и оплата",
+      "Админ-панель",
+      "SMS-уведомления",
+    ],
+    url: "#contacts",
+  },
+  {
+    id: "delivery-app",
+    title: "Delivery Hub",
+    category: "Мобильное приложение",
+    image: "/images/products/delivery-app.webp",
+    features: [
+      "Отслеживание заказов",
+      "Карта доставки",
+      "Push-уведомления",
+      "iOS и Android",
+    ],
+    url: "#contacts",
   },
 ];
 

@@ -1,0 +1,274 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background: #050505;
+}
+
+.layout {
+  display: grid;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 3rem;
+    align-items: center;
+  }
+}
+
+/* ─── Left: photo column ─── */
+
+.visualCol {
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .visualCol {
+    margin-inline: 0;
+    max-width: none;
+  }
+}
+
+.photoFrame {
+  position: relative;
+}
+
+.photoInner {
+  position: relative;
+  overflow: hidden;
+  border: 6px solid #ffffff;
+  border-radius: 2rem;
+  background: #c9f24d;
+  aspect-ratio: 4 / 5.2;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.instagramBadge {
+  position: absolute;
+  left: 50%;
+  bottom: 18%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 148px;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #050505;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.instagramBadge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.instagramLabel {
+  font-size: 0.65rem;
+  color: #8a8a8a;
+}
+
+.instagramHandle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.verifiedIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #3b82f6;
+}
+
+.quoteCard {
+  position: absolute;
+  right: -4%;
+  bottom: -6%;
+  z-index: 3;
+  display: flex;
+  gap: 0.75rem;
+  width: min(92%, 320px);
+  padding: 1rem;
+  border-radius: 1.25rem;
+  background: rgba(18, 18, 18, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+}
+
+@media (min-width: 640px) {
+  .quoteCard {
+    right: -8%;
+    bottom: -8%;
+    width: min(88%, 340px);
+    padding: 1.1rem 1.15rem;
+  }
+}
+
+.quoteAvatar {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 2px solid rgba(201, 242, 77, 0.35);
+  background: #c9f24d;
+}
+
+.quoteAvatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.quoteText {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: #d4d4d4;
+}
+
+@media (min-width: 640px) {
+  .quoteText {
+    font-size: 0.78rem;
+  }
+}
+
+/* ─── Right: content column ─── */
+
+.contentCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  color: #8a8a8a;
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.achievements {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .achievements {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1.5rem;
+  }
+}
+
+.achievement {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr 1.75rem;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.achievementText {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: #8a8a8a;
+}
+
+@media (min-width: 640px) {
+  .achievementText {
+    font-size: 0.78rem;
+  }
+}
+
+.achievementHighlight {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .achievementHighlight {
+    font-size: 0.88rem;
+  }
+}
+
+.wreathLeft,
+.wreathRight {
+  width: 1.4rem;
+  height: 2.4rem;
+  color: #c9a84d;
+  opacity: 0.9;
+}
+
+.wreathRight {
+  transform: scaleX(-1);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  padding: 1rem 1.75rem;
+  border-radius: 999px;
+  background: #c9f24d;
+  color: #050505;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(201, 242, 77, 0.28);
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(201, 242, 77, 0.38);
+}
+
+.ctaIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: rgba(5, 5, 5, 0.12);
+  color: #050505;
+}

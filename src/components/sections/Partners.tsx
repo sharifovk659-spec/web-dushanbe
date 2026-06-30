@@ -10,24 +10,26 @@ const carouselPartners = [...partners, ...partners];
 
 function PartnerLogo({ partner }: { partner: (typeof partners)[number] }) {
   return (
-    <div className="partner-card group relative flex h-[4.25rem] w-full items-center justify-center rounded-sm px-3 sm:h-[5rem] sm:px-4">
-      <span className="partner-card-border" aria-hidden />
-      <span className="partner-card-glow" aria-hidden />
-      <Image
-        src={images.partner(partner.id)}
-        alt={partner.name}
-        width={160}
-        height={56}
-        loading="lazy"
-        className="partner-logo relative z-[1] h-7 w-auto max-w-[85%] sm:h-9 lg:h-10"
-      />
-    </div>
+    <article className={styles.card}>
+      <div className={styles.cardInner}>
+        <Image
+          src={images.partner(partner.id)}
+          alt={partner.name}
+          width={960}
+          height={1200}
+          loading="lazy"
+          sizes="(max-width: 640px) 200px, 280px"
+          quality={100}
+          className={styles.cardImage}
+        />
+      </div>
+    </article>
   );
 }
 
 export function Partners() {
   return (
-    <section id="about" className="relative overflow-hidden bg-[#050505] py-[50px]">
+    <section id="partners" className="relative overflow-hidden bg-[#050505] py-[50px]">
       <div className="section-container relative mb-[50px]">
         <FadeIn variant="fadeUp">
           <h2 className="font-display text-center text-xl font-bold tracking-tight text-text sm:text-2xl">

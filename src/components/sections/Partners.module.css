@@ -7,15 +7,15 @@
   -webkit-mask-image: linear-gradient(
     90deg,
     transparent 0%,
-    #000 6%,
-    #000 94%,
+    #000 4%,
+    #000 96%,
     transparent 100%
   );
   mask-image: linear-gradient(
     90deg,
     transparent 0%,
-    #000 6%,
-    #000 94%,
+    #000 4%,
+    #000 96%,
     transparent 100%
   );
 }
@@ -23,10 +23,16 @@
 .marqueeTrack {
   display: flex;
   width: max-content;
-  align-items: center;
-  gap: 50px;
-  animation: partnersMarquee 38s linear infinite;
+  align-items: stretch;
+  gap: 28px;
+  animation: partnersMarquee 65s linear infinite;
   will-change: transform;
+}
+
+@media (min-width: 640px) {
+  .marqueeTrack {
+    gap: 36px;
+  }
 }
 
 .marqueeOuter:hover .marqueeTrack {
@@ -44,7 +50,64 @@
 
 .slide {
   flex: 0 0 auto;
-  width: clamp(140px, 16vw, 180px);
+  width: clamp(200px, 22vw, 280px);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #f8f8f8;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  transition:
+    transform 280ms ease,
+    box-shadow 280ms ease,
+    border-color 280ms ease;
+}
+
+.cardInner {
+  display: flex;
+  width: calc(100% - 0.75rem);
+  height: calc(100% - 0.75rem);
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  background: #ffffff;
+  padding: 1rem;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 640px) {
+  .cardInner {
+    width: calc(100% - 1rem);
+    height: calc(100% - 1rem);
+    padding: 1.15rem;
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 242, 77, 0.45);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.34),
+    0 0 24px rgba(201, 242, 77, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -68,6 +131,6 @@
 @media (prefers-reduced-motion: reduce) and (min-width: 640px) {
   .marqueeTrack {
     padding-inline: 88px;
-    gap: 48px;
+    gap: 36px;
   }
 }

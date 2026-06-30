@@ -5,12 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { HiArrowRight, HiCheck } from "react-icons/hi2";
-import type { projects } from "@/data/content";
+import type { PortfolioItem } from "@/data/content";
 import { useIsDesktop } from "@/hooks/useMediaQuery";
 
-type Project = (typeof projects)[number];
+type ProjectCardProps = {
+  project: PortfolioItem;
+  ctaLabel?: string;
+};
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, ctaLabel = "Смотреть проект" }: ProjectCardProps) {
   const isDesktop = useIsDesktop();
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
@@ -99,7 +102,7 @@ export function ProjectCard({ project }: { project: Project }) {
               href={project.url}
               className="btn-gradient inline-flex w-full items-center justify-center gap-2 rounded-sm px-4 py-2.5 text-sm font-semibold text-[#050505]"
             >
-              Смотреть проект
+              {ctaLabel}
               <HiArrowRight className="h-4 w-4" />
             </Link>
           </div>
