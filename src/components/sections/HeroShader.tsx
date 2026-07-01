@@ -14,8 +14,8 @@ const SHADER_MARKUP = `
   <uniform type="float" name="by" value="1" />
   <uniform type="color" name="color1" value="#050505" />
   <uniform type="color" name="color2" value="#c9f24d" />
-  <uniform type="color" name="color3" value="#1a2608" />
-  <uniform type="color" name="color4" value="#d4f87a" />
+  <uniform type="color" name="color3" value="#111808" />
+  <uniform type="color" name="color4" value="#b8d94a" />
 
   <script type="buffer" name="position" data-size="2">
     [-1, 1, -1,-1, 1,1, 1, 1, -1,-1, 1,-1]
