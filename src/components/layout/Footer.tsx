@@ -1,8 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaTelegram, FaLinkedin, FaFacebook } from "react-icons/fa";
 import { HiPhone, HiEnvelope, HiMapPin } from "react-icons/hi2";
 import { siteConfig, footerLinks } from "@/data/content";
-import { Logo } from "@/components/ui/Logo";
+import { images } from "@/lib/images";
 import { FadeIn } from "@/components/ui/FadeIn";
 import styles from "./Footer.module.css";
 
@@ -27,7 +28,16 @@ export function Footer() {
         <FadeIn variant="fadeUp">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-12 lg:gap-5">
           <div className="sm:col-span-2 lg:col-span-4">
-            <Logo />
+            <Link href="#hero" className={styles.footerLogoLink}>
+              <Image
+                src={images.footerLogo}
+                alt={siteConfig.name}
+                width={140}
+                height={140}
+                className={styles.footerLogo}
+                loading="lazy"
+              />
+            </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-text-secondary">
               {siteConfig.tagline}
             </p>

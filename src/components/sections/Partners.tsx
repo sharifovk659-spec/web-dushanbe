@@ -19,7 +19,7 @@ function PartnerLogo({ partner }: { partner: (typeof partners)[number] }) {
           height={1200}
           loading="lazy"
           sizes="(max-width: 640px) 200px, 280px"
-          quality={100}
+          unoptimized
           className={styles.cardImage}
         />
       </div>

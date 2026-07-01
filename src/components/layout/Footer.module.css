@@ -79,6 +79,28 @@
   z-index: 1;
 }
 
+.footerLogoLink {
+  display: inline-block;
+  transition: opacity 250ms ease-out, transform 250ms ease-out;
+}
+
+.footerLogoLink:hover {
+  opacity: 0.88;
+  transform: scale(1.03);
+}
+
+.footerLogo {
+  display: block;
+  width: auto;
+  height: 72px;
+}
+
+@media (min-width: 640px) {
+  .footerLogo {
+    height: 88px;
+  }
+}
+
 @keyframes footerLineDrift {
   0%,
   100% {

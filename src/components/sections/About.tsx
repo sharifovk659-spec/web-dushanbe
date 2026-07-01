@@ -51,10 +51,10 @@ function AchievementItem({
   return (
     <motion.li
       className={styles.achievement}
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.45, delay: index * 0.05, ease: EASE_PREMIUM }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: EASE_PREMIUM }}
     >
       <LaurelWreath className={styles.wreathLeft} />
       <p className={styles.achievementText}>

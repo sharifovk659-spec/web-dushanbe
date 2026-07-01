@@ -2,6 +2,7 @@ import { projects } from "@/data/content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StaggerContainer, StaggerItem } from "@/components/ui/FadeIn";
 import { ProjectCard } from "@/components/sections/ProjectCard";
+import { Products } from "@/components/sections/Products";
 import { GlowPulse } from "@/components/animations/GlowPulse";
 
 export function Projects() {
@@ -28,6 +29,8 @@ export function Projects() {
             </StaggerItem>
           ))}
         </StaggerContainer>
+
+        <Products />
       </div>
     </section>
   );

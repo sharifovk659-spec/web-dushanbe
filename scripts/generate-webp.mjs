@@ -10,10 +10,10 @@ const jobs = [
   { file: "og-cover.svg", width: 1200, height: 630 },
   { dir: "partners", width: 960, height: 1200, quality: 96 },
   { dir: "projects", width: 1200, height: 720 },
-  { dir: "products", width: 1200, height: 720 },
+  { dir: "products", width: 1200, height: 720, quality: 95 },
 ];
 
-const PARTNER_BG = { r: 248, g: 248, b: 248, alpha: 1 };
+const PARTNER_BG = { r: 5, g: 5, b: 5, alpha: 1 };
 
 async function convertPartnerLogo(input, outPath, width, height, quality = 96) {
   await sharp(input)
@@ -39,8 +39,23 @@ async function convertRaster(input, outPath, width, height, quality = 82) {
   console.log(`✓ ${basename(outPath)}`);
 }
 
-async function convertSvg(svgPath, outPath, width, height, quality = 82) {
+async function convertPortfolioPreview(input, outPath, width, height, quality = 95) {
+  await sharp(input)
+    .resize(width, height, {
+      fit: "cover",
+      position: "top",
+    })
+    .webp({ quality, effort: 6 })
+    .toFile(outPath);
+  console.log(`✓ ${basename(outPath)}`);
+}
+
+async function convertSvg(svgPath, outPath, width, height, quality = 82, mode = "contain") {
   const svg = await readFile(svgPath);
+  if (mode === "cover") {
+    await convertPortfolioPreview(svg, outPath, width, height, quality);
+    return;
+  }
   await convertRaster(svg, outPath, width, height, quality);
 }
 
@@ -62,7 +77,8 @@ for (const job of jobs) {
     const outPath = join(dirPath, file.replace(/\.(svg|png)$/i, ".webp"));
 
     if (file.endsWith(".svg")) {
-      await convertSvg(inputPath, outPath, job.width, job.height, job.quality);
+      const mode = job.dir === "projects" || job.dir === "products" ? "cover" : "contain";
+      await convertSvg(inputPath, outPath, job.width, job.height, job.quality, mode);
       continue;
     }
 
